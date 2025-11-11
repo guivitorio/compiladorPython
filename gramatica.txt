@@ -1,0 +1,72 @@
+programa : 
+	':' 'DECLARACOES' listaDeclaracoes ':' 'ALGORITMO' listaComandos;
+
+listaDeclaracoes : 
+	declaracao listaDeclaracoes | 
+	declaracao;
+
+declaracao : 
+	VARIAVEL ':' tipoVar;
+
+tipoVar : 
+	'INTEIRO' | 
+	'REAL';
+
+expressaoAritmetica : 
+	expressaoAritmetica '+' termoAritmetico | 
+	expressaoAritmetica '-' termoAritmetico | 
+	termoAritmetico;
+
+termoAritmetico : 
+	termoAritmetico '*' fatorAritmetico | 
+	termoAritmetico '/' fatorAritmetico | 
+	fatorAritmetico;
+
+fatorAritmetico : 
+	NUMINT | 
+	NUMREAL | 
+	VARIAVEL | 
+	LEFT_PAR expressaoAritmetica RIGHT_PAR
+
+expressaoRelacional : 
+	expressaoRelacional operadorBooleano termoRelacional | 
+	termoRelacional;
+
+termoRelacional : 
+	expressaoAritmetica OP_REL expressaoAritmetica | 
+	LEFT_PAR expressaoRelacional RIGHT_PAR;
+
+operadorBooleano : 
+	'E' | 
+	'OU';
+
+listaComandos : 
+	comando listaComandos | 
+	comando;
+
+comando : 
+	comandoAtribuicao | 
+	comandoEntrada | 
+	comandoSaida | 
+	comandoCondicao | 
+	comandoRepeticao | 
+	subAlgoritmo;
+
+comandoAtribuicao : 
+	'VARIAVEL' = expressaoAritmetica;
+
+comandoEntrada : 
+	'LER' VARIAVEL;
+
+comandoSaida : 
+	'IMPRIMIR' LEFT_PAR (VARIAVEL | CADEIA) RIGHT_PAR;
+
+comandoCondicao : 
+	'SE' expressaoRelacional 'ENTAO' comando | 
+	'SE' expressaoRelacional 'ENTAO' comando 'SENAO' comando;
+
+comandoRepeticao : 
+	'ENQUANTO' expressaoRelacional comando;
+
+subAlgoritmo : 
+	'INICIO' listaComandos 'FIM';
