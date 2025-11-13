@@ -404,10 +404,6 @@ stdout/stderr
 4. **Lint e CI** — adicionar `black`, `flake8` e GitHub Actions para automação.
 5. **Documentação estendida** — adicionar mais exemplos e casos de teste na wiki.
 
-## Licença
-
-Defina uma licença apropriada (ex.: MIT, Apache 2.0) e crie um arquivo `LICENSE` na raiz.
-
 ## Autores
 
 - Arthur Vinicius de Albuquerque Pimentel
